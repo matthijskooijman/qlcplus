@@ -678,8 +678,8 @@ void Scene::postRun(MasterTimer* timer, QList<Universe *> ua)
             Fixture *fixture = doc()->fixture(fc.fixture());
             if (fixture != NULL)
                 canFade = fixture->channelCanFade(fc.channel());
-            fc.setStart(fc.current(getAttributeValue(Intensity)));
-            fc.setCurrent(fc.current(getAttributeValue(Intensity)));
+            fc.setStart(fc.current(m_IntensityBeforeStop));
+            fc.setCurrent(fc.current(m_IntensityBeforeStop));
 
             fc.setElapsed(0);
             fc.setReady(false);

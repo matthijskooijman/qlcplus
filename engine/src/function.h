@@ -824,6 +824,9 @@ private:
     QMutex m_stopMutex;
     QWaitCondition m_functionStopped;
 
+protected:
+    qreal m_IntensityBeforeStop;
+
     /*************************************************************************
      * Attributes
      *************************************************************************/

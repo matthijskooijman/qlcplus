@@ -1130,6 +1130,8 @@ void VCSlider::writeDMXPlayback(MasterTimer* timer, QList<Universe *> ua)
         // Make sure we ignore the fade out time
         if (function->stopped() == false)
         {
+            // Set the value to 0, to hack around fade out
+            adjustFunctionIntensity(function, 0);
             function->stop(functionParent());
             resetIntensityOverrideAttribute();
         }

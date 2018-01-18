@@ -98,6 +98,7 @@ Function::Function(QObject *parent)
     , m_stop(true)
     , m_running(false)
     , m_paused(false)
+    , m_IntensityBeforeStop(0)
     , m_lastOverrideAttributeId(OVERRIDE_ATTRIBUTE_START_ID)
     , m_blendMode(Universe::NormalBlend)
 {
@@ -127,6 +128,7 @@ Function::Function(Doc* doc, Type t)
     , m_stop(true)
     , m_running(false)
     , m_paused(false)
+    , m_IntensityBeforeStop(0)
     , m_lastOverrideAttributeId(OVERRIDE_ATTRIBUTE_START_ID)
     , m_blendMode(Universe::NormalBlend)
 {
@@ -1127,6 +1129,8 @@ void Function::stop(FunctionParent source)
     qDebug() << "Function stop(). Name:" << m_name << "ID: " << m_id << "source:" << source.type() << source.id();
 
     QMutexLocker sourcesLocker(&m_sourcesMutex);
+
+    m_IntensityBeforeStop = getAttributeValue(Intensity);
 
     if ((source.id() == id() && source.type() == FunctionParent::Function) ||
         (source.type() == FunctionParent::Master) ||
